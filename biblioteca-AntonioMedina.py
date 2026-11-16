@@ -137,8 +137,8 @@ def prestar_libro():
             "usuario": identificacion,
             "libro": titulo,
             #Se establecen como se van a organizar las fechas del prestamo y limite
-            "fecha prestamo": fecha_prestamo.strftime("%d/%m/%Y"),
-            "fecha limite": fecha_limite.strftime("%d/%m/%Y"),
+            "fecha_prestamo": fecha_prestamo.strftime("%d/%m/%Y"),
+            "fecha_limite": fecha_limite.strftime("%d/%m/%Y"),
             "devuelto": False
         }
 
@@ -182,8 +182,6 @@ def devolver_libro():
         libro_encontrado = next((l for l in Libros if l["titulo"] == titulo), None)#se busca en la lista por los titulos hasta encontrar
         if libro_encontrado:
             libro_encontrado["disponibles"] += 1 #Se suma y se añade de vuelta las unidades disponibles 
-            devolucion=datetime.now()
-            devolucion.strftime("%d/%m/%Y %H:%M")
             
 
         print("Libro devuelto exitosamente.")
@@ -202,8 +200,9 @@ def consultar_prestamos():
         return
     
     print("\nPréstamos registrados:")
+
     for prestamo in Prestamos:
-        print(f"ID: {prestamo['id']}, \n Usuario: {prestamo['usuario']}, \n Libro: {prestamo['libro']}, \n Fecha de préstamo: {prestamo['fecha prestamo']},Fecha de devolucion: {prestamo['devolucion']}, \n Fecha límite: {prestamo['fecha limite']}, \n Devuelto: {'Sí' if prestamo['devuelto'] else 'No'}")
+        print(f"ID: {prestamo['id']}, \n Usuario: {prestamo['usuario']}, \n Libro: {prestamo['libro']}, \n Fecha de préstamo: {prestamo['fecha_prestamo']}, \n Fecha límite: {prestamo['fecha_limite']}, \n Devuelto: {'Sí' if prestamo['devuelto'] else 'No'}")
 
 #Menu principal
 def menu():
